@@ -1,16 +1,41 @@
-extends Node2D
+extends KinematicBody2D
+class_name Player
+
+const  BULLET_PS: PackedScene = preload("res://scene/Bullet.tscn")
+
+var speed: float = 500.66
+var direction: Vector2
+var velocity: Vector2
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func _process(delta_time):
+    
+    var delta_position: Vector2 = Vector2.ZERO
+    
+    if Input.is_action_just_pressed("Move_up"):
+        delta_position = Vector2(0, -1)
+        print("move up")
+    if Input.is_action_just_pressed("Mover_down"):
+        delta_position = Vector2(0, 1)
+        print("move Down")
+    if Input.is_action_just_pressed("Move_left"): 
+        delta_position = Vector2(-1, 0)
+        print("move left")
+    if Input.is_action_just_pressed("Mover_right"):
+        delta_position = Vector2(1, 0)
+        print("move right")    
+        
+    if Input.is_action_just_pressed("fire"):
+        fire()
+        
+       
+    Move(delta_position * speed * delta_time)
+    
+func Move (delta_position : Vector2):
+      position += delta_position
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
+func fire():
+     var bullet: = BULLET_PS.instance()
+     bullet.position = position
+     get_parent().add_child(bullet)
+     print ("fire")
