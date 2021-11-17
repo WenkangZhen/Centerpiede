@@ -1,7 +1,8 @@
 extends Area2D
 class_name Bullet
 
-export var speed = 50.0
+var player 
+export var speed = 600
 
 func _process(delta_time):
     if position.y < 50:
@@ -10,5 +11,6 @@ func _process(delta_time):
     position.y -= speed * delta_time
 
 func Kill():
+    player.Reload(1)
     queue_free()
 
