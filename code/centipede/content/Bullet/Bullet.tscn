@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://content/Bullet/Bullet.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.25102, 14.4235 )
+
+[node name="Bullet" type="KinematicBody2D"]
+position = Vector2( 29.7998, -19.799 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -29.9134, 19.2055 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -30.1053, 18.9109 )
+scale = Vector2( 0.11313, 0.464146 )
+texture = ExtResource( 1 )
